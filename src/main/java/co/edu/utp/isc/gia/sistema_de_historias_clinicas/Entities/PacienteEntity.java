@@ -31,7 +31,8 @@ public class PacienteEntity {
     private String lugarDeResidencia;
     private String estado;
 
-    @ManyToMany(mappedBy = "paciente")
-    private List<AcompañanteEntity> acompañante;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cId0", foreignKey = @ForeignKey(name = "cId"))
+    private ContactoDeEmergenciaEntity contactoDeEmergencia;
 
 }

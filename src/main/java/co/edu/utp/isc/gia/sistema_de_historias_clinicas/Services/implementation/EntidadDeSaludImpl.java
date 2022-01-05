@@ -8,6 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class EntidadDeSaludImpl implements EntidadDeSaludService {
 
@@ -56,5 +59,16 @@ public class EntidadDeSaludImpl implements EntidadDeSaludService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<EntidadDeSaludDTO> listarEntidadDeSalud() {
+
+        Iterable<EntidadDeSaludEntity> entidadDeSalud = entidadDeSaludRepository.findAll();
+        List<EntidadDeSaludDTO> entidadDeSaludDTO = new ArrayList();
+        for (EntidadDeSaludEntity entidadDeSaludEntity: entidadDeSalud){
+            entidadDeSaludDTO.add(modelMapper.map(entidadDeSaludEntity, EntidadDeSaludDTO.class));
+        }
+        return entidadDeSaludDTO;
     }
 }

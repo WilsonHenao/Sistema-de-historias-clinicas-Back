@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "acompañante")
-public class AcompañanteEntity {
+public class ContactoDeEmergenciaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +25,4 @@ public class AcompañanteEntity {
     private String telefono;
 
     private String parentescoConPaciente;
-
-    @JoinTable(
-            name = "rel_acomp_paci",
-            joinColumns = @JoinColumn(name = "Fk_acompañante", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "Fk_paciente", nullable = false)
-    )
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<PacienteEntity> paciente;
 }

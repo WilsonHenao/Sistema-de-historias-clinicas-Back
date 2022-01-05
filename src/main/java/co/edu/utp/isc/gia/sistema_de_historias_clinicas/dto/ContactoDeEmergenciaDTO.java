@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AcompañanteDTO implements Serializable {
+public class ContactoDeEmergenciaDTO implements Serializable {
 
     private Long id;
     private String nombre;
