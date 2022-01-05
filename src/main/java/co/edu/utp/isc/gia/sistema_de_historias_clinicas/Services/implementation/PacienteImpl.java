@@ -1,12 +1,17 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.implementation;
 
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Entities.PacienteEntity;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Entities.ProcedimientosEntity;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Repository.PacienteRepository;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.PacienteService;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.PacienteDTO;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.ProcedimientosDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PacienteImpl implements PacienteService {
@@ -55,5 +60,15 @@ public class PacienteImpl implements PacienteService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<PacienteDTO> listarPaciente() {
+        Iterable<PacienteEntity> pacienteEntities = pacienteRepository.findAll();
+        List<PacienteDTO> pacienteDTOS = new ArrayList();
+        for (PacienteEntity paciente: pacienteEntities){
+            pacienteDTOS.add(modelMapper.map(paciente, PacienteDTO.class));
+        }
+        return pacienteDTOS;
     }
 }

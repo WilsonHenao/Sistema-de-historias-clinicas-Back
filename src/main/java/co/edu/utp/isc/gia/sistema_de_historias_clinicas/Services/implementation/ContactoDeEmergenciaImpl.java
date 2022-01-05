@@ -1,12 +1,17 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.implementation;
 
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Entities.ConsultaEntity;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Entities.ContactoDeEmergenciaEntity;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Repository.ContactoDeEmergenciaRepository;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.ContactoDeEmergenciaService;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.ConsultaDTO;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.ContactoDeEmergenciaDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ContactoDeEmergenciaImpl implements ContactoDeEmergenciaService {
@@ -59,5 +64,16 @@ public class ContactoDeEmergenciaImpl implements ContactoDeEmergenciaService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<ContactoDeEmergenciaDTO> listarContacto() {
+        Iterable<ContactoDeEmergenciaEntity> contactoDeEmergenciaEntities =
+                contactoDeEmergenciaRepository.findAll();
+        List<ContactoDeEmergenciaDTO> contactoDeEmergenciaDTOS = new ArrayList();
+        for (ContactoDeEmergenciaEntity emergencia: contactoDeEmergenciaEntities){
+            contactoDeEmergenciaDTOS.add(modelMapper.map(emergencia, ContactoDeEmergenciaDTO.class));
+        }
+        return contactoDeEmergenciaDTOS;
     }
 }

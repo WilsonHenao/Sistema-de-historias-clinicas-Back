@@ -38,4 +38,9 @@ public class EntidadDeSaludController {
     public List<EntidadDeSaludDTO> listarEntidadDeSalud(){
         return entidadDeSaludService.listarEntidadDeSalud();
     }
+
+    @GetMapping("/{id}")
+    public EntidadDeSaludDTO buscarPorId(@PathVariable("id") Long id){
+        return entidadDeSaludService.buscarPorId(id);
+    }
 }

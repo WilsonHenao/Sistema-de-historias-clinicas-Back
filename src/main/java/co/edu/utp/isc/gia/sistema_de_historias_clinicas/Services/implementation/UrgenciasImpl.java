@@ -1,12 +1,17 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.implementation;
 
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Entities.EntidadDeSaludEntity;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Entities.UrgenciasEntity;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Repository.UrgenciasRepository;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.UrgenciasService;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.EntidadDeSaludDTO;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.UrgenciasDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UrgenciasImpl implements UrgenciasService {
@@ -55,5 +60,15 @@ public class UrgenciasImpl implements UrgenciasService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<UrgenciasDTO> listarUrgencias() {
+        Iterable<UrgenciasEntity> urgenciasEntities = urgenciasRepository.findAll();
+        List<UrgenciasDTO> urgenciasDTOS = new ArrayList();
+        for (UrgenciasEntity urgencias: urgenciasEntities){
+            urgenciasDTOS.add(modelMapper.map(urgencias, UrgenciasDTO.class));
+        }
+        return urgenciasDTOS;
     }
 }

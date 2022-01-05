@@ -1,11 +1,14 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Controller;
 
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.UrgenciasService;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.ProcedimientosDTO;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.UrgenciasDTO;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("urgencias")
@@ -28,6 +31,12 @@ public class UrgenciasController {
 
     @DeleteMapping()
     public boolean eliminarUrgencias(@RequestParam("id") Long id){
+
         return urgenciasService.eliminarUrgencias(id);
+    }
+
+    @GetMapping()
+    public List<UrgenciasDTO> listarUrgencias(){
+        return urgenciasService.listarUrgencias();
     }
 }

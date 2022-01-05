@@ -1,11 +1,14 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Controller;
 
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.HistoriaClinicaService;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.EntidadDeSaludDTO;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.HistoriaClinicaDTO;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("historiaClinica")
@@ -29,5 +32,10 @@ public class HistoriaClinicaController {
     @DeleteMapping()
     public boolean eliminarHistoriaClinica(@RequestParam("id") Long id){
         return historiaClinicaService.eliminarHistoriaClinica(id);
+    }
+
+    @GetMapping()
+    public List<HistoriaClinicaDTO> listarHistoriaClinica(){
+        return historiaClinicaService.listarHistoriaClinica();
     }
 }

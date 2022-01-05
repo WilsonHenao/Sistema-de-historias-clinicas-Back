@@ -27,4 +27,5 @@ public class PacienteDTO implements Serializable {
     private String telefonoDelDomicilio;
     private String lugarDeResidencia;
     private String estado;
+    private Long idContactoDeEmergencia;
 }

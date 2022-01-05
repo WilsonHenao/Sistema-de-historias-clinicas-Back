@@ -1,12 +1,17 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.implementation;
 
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Entities.HospitalizacionEntity;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Entities.PacienteEntity;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Repository.HospitalizacionRepository;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.HospitalizacionService;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.HospitalizacionDTO;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.PacienteDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class HospitalizacionImpl implements HospitalizacionService {
@@ -57,5 +62,15 @@ public class HospitalizacionImpl implements HospitalizacionService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<HospitalizacionDTO> listarHospitalizacion() {
+        Iterable<HospitalizacionEntity> hospitalizacionEntities = hospitalizacionRepository.findAll();
+        List<HospitalizacionDTO> hospitalizacionDTOS = new ArrayList();
+        for (HospitalizacionEntity hospitalizacion: hospitalizacionEntities){
+            hospitalizacionDTOS.add(modelMapper.map(hospitalizacion, HospitalizacionDTO.class));
+        }
+        return hospitalizacionDTOS;
     }
 }

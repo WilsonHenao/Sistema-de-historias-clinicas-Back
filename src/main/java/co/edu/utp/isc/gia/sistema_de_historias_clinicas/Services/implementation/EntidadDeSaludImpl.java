@@ -71,4 +71,19 @@ public class EntidadDeSaludImpl implements EntidadDeSaludService {
         }
         return entidadDeSaludDTO;
     }
+
+    @Override
+    public EntidadDeSaludEntity obtenerEntidadDeSalud(Long id){
+        return entidadDeSaludRepository.findById(id).get();
+    }
+
+    @Override
+    public EntidadDeSaludDTO buscarPorId(Long id) {
+
+        if(entidadDeSaludRepository.existsById(id)){
+            return modelMapper.map(obtenerEntidadDeSalud(id), EntidadDeSaludDTO.class);
+        }else{
+            return null;
+        }
+    }
 }

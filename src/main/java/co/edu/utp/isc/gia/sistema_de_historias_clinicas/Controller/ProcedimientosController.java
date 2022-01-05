@@ -1,11 +1,14 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Controller;
 
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.ProcedimientosService;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.PersonalMedicoDTO;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.ProcedimientosDTO;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("procedimientos")
@@ -29,5 +32,10 @@ public class ProcedimientosController {
     @DeleteMapping()
     public boolean eliminarProcedimientos(@RequestParam("id") Long id){
         return procedimientosService.eliminarProcedimientos(id);
+    }
+
+    @GetMapping()
+    public List<ProcedimientosDTO> listarProcedimientos(){
+        return procedimientosService.listarProcedimientos();
     }
 }

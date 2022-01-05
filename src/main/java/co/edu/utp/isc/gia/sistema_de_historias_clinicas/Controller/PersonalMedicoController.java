@@ -1,11 +1,14 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Controller;
 
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.PersonalMedicoService;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.EntidadDeSaludDTO;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.PersonalMedicoDTO;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("personalMedico")
@@ -29,5 +32,10 @@ public class PersonalMedicoController {
     @DeleteMapping()
     public boolean eliminarPersonalMedico(@RequestParam("id") Long id){
         return personalMedicoService.eliminarPersonalMedico(id);
+    }
+
+    @GetMapping()
+    public List<PersonalMedicoDTO> listarPersonalMedico(){
+        return personalMedicoService.listarPersonalMedico();
     }
 }

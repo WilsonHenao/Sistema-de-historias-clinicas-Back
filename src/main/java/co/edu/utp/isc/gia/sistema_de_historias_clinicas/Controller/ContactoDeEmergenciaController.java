@@ -1,11 +1,14 @@
 package co.edu.utp.isc.gia.sistema_de_historias_clinicas.Controller;
 
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.Services.ContactoDeEmergenciaService;
+import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.ConsultaDTO;
 import co.edu.utp.isc.gia.sistema_de_historias_clinicas.dto.ContactoDeEmergenciaDTO;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("acompañante")
@@ -31,5 +34,10 @@ public class ContactoDeEmergenciaController {
     @DeleteMapping()
     public boolean eliminarContactoDeEmergencia(@RequestParam("id") Long id){
         return contactoDeEmergenciaService.eliminarContactoDeEmergencia(id);
+    }
+
+    @GetMapping()
+    public List<ContactoDeEmergenciaDTO> listarContacto(){
+        return contactoDeEmergenciaService.listarContacto();
     }
 }
