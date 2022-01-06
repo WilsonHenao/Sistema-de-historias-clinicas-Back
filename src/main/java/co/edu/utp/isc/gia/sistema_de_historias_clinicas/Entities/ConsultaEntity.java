@@ -18,7 +18,7 @@ public class ConsultaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date fechaDeConsulta;
-    private Date horaDeConsulta;
+    private String horaDeConsulta;
     private String tipoDeConsulta;
     private String causaExterna;
     private String conducta;

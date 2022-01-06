@@ -18,7 +18,7 @@ public class HospitalizacionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date fechaDeEgreso;
-    private Date horaDeEgreso;
+    private String horaDeEgreso;
     private int diasDeEstancia;
     private String estadoEgreso;
     private Long idViaDeIngreso;

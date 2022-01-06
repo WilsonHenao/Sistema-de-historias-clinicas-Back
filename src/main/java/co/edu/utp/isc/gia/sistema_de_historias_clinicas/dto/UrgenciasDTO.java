@@ -16,9 +16,9 @@ public class UrgenciasDTO implements Serializable {
 
     private Long id;
     private Date fechaDeIngreso;
-    private Date horaDeIngreso;
+    private String horaDeIngreso;
     private Date fechaDeSalida;
-    private Date horaDeSalida;
+    private String horaDeSalida;
     private String causaExterna;
     private String conducta;
     private int horasDeObservacion;
